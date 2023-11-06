@@ -22,8 +22,7 @@ public class TalkManager : MonoBehaviour
     int talkIndex=1; // 딕셔너리 인덱스번호 , 1인 이유는 0을 미리 실행하기 때문임
     public int randomIndex; // 이벤트 번호 == 캐릭터 인덱스 번호
 
-    public float interval = 10.0f;// 조주을 하는 시간
-    public float curruntTime =0.0f; //현재 시간
+    public float curruntTime =18.0f; //현재 시간
 
     public GameObject characterImage; // 캐릭터 이미지 담아두는 곳
     public GameObject[] imagePrefabs; // 이미지 프리팹들을 저장할 배열
