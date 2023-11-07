@@ -19,7 +19,7 @@ public class TalkManager : MonoBehaviour
     public Text Talktext; // 대화 텍스트
     public Text nameText; // 네임 텍스트
 
-    int talkIndex=1; // 딕셔너리 인덱스번호 , 1인 이유는 0을 미리 실행하기 때문임
+    int talkIndex = 1; // 딕셔너리 인덱스번호 , 1인 이유는 0을 미리 실행하기 때문임
     public int randomIndex; // 이벤트 번호 == 캐릭터 인덱스 번호
 
     public float curruntTime =18.0f; //현재 시간
@@ -35,6 +35,12 @@ public class TalkManager : MonoBehaviour
     public bool finishedMakingAlcoholFlag = false; //알콜 주조가 끝났는지 확인하는 깃발
 
     public float delay = 0.06f; // 글자가 나오는 딜레이 속도
+    private bool coroutineIsRunningFlag =true; //글자가 나오고 있는지 확인하는 깃발
+
+    public Button bell_btn;
+    public Button door_btn;
+
+
 
     void Awake()
     {
@@ -42,7 +48,7 @@ public class TalkManager : MonoBehaviour
         lasttalkData = new Dictionary<int, string[]>(); // 마지막 대화 데이터 넣는 딕셔너리
         GenerateData();
 
-       
+      
     }
 
     private void Update()
@@ -58,6 +64,8 @@ public class TalkManager : MonoBehaviour
 
     public void ImageCreating()
     {
+        
+
         if (imagePrefabs.Length > 0)
         {
             Talktext.text = "";
@@ -73,10 +81,12 @@ public class TalkManager : MonoBehaviour
 
             nameText.text = CharacterName[randomIndex];// 이름 텍스트에 인덱스에 맞는 이름 넣음
 
-            string firstTalk = GetTalk(randomIndex, 0); // 첫번째 텍스트를 띄움}
+            string firstTalk = GetTalk(randomIndex, 0); // 첫번째 텍스트를 띄움
+            coroutineIsRunningFlag = false;
             StartCoroutine(textPrint(firstTalk));
-            // 이미지 위치 및 크기 조절 (원하는 대로 조절)
 
+            bell_btn.interactable = false;
+            door_btn.interactable = false;
         }
         else
         {
@@ -90,11 +100,12 @@ public class TalkManager : MonoBehaviour
         CharacterName[0] = "Elf";
         CharacterName[1] = "Cargirl";
         CharacterName[2] = "MarketOner";
- 
-        talkData.Add(0, new string[] { "Elf111111111" , "Elf222222222","Elf333333333333"
+
+        // 반드시 한칸씩 띄워서 작성할 것!
+        talkData.Add(0, new string[] { "Elf111111111" , " Elf222222222"," Elf333333333333"
             });
-        talkData.Add(1, new string[] { "cat111" , "cat22222", "cat33333", "cat4444" });
-        talkData.Add(2, new string[] { "MarketOner1111111", "MarketOner22", "MarketOner33333", "MarketOner4444" });
+        talkData.Add(1, new string[] { "cat111" , " cat22222", " cat33333", " cat4444" });
+        talkData.Add(2, new string[] { "MarketOner1111111", " MarketOner22", " MarketOner33333", " MarketOner4444" });
 
         lasttalkData.Add(0, new string[] { "오 정말 고마워요" });
         lasttalkData.Add(1, new string[] { "내 생에 최고의 술이였어" });
@@ -121,6 +132,8 @@ public class TalkManager : MonoBehaviour
     {
         if (makingAlcohol.timeFlag) // 시간이 지나 flag가 false가 되면 작업을 수행하지 않는다.
         {
+             // 대사 출력이 시작되어 트루로 바꿈
+
             if (flag)
             {
 
@@ -137,28 +150,47 @@ public class TalkManager : MonoBehaviour
 
             else
             {
-                string talkData = GetTalk(randomIndex, talkIndex); //받아온 대화를 저장
+                if (coroutineIsRunningFlag) //대화 출력이 끝나지 않으면 다음 대화를 띄우지 않음 
+                { 
+                    string talkData = GetTalk(randomIndex, talkIndex); //받아온 대화를 저장
 
-                if (talkData == null) // 대화가 끝나면 대화창을 닫음
-                {
-                    talkIndex = 1;
+                    if (talkData == null) // 대화가 끝나면 대화창을 닫음
+                    {
+                        talkIndex = 1;
+    
+                        ChangePlace(); // 조주화면으로 변경
 
-                    ChangePlace(); // 조주화면으로 변경
-
-
-                    TalkPanel.SetActive(false);
-                    characterImage.SetActive(false);
+    
+                        TalkPanel.SetActive(false);
+                        characterImage.SetActive(false);
 
                 }
-                Talktext.text = "";
-                StartCoroutine(textPrint(talkData));//대화창에 대화를 넣는다.
+                    else {
+                
+                        coroutineIsRunningFlag = false;
+                        StartCoroutine(textPrint(talkData));//대화창에 대화를 넣는다.
+                        
+                        }
+
                 talkIndex++;
+                Talktext.text = "";
+                }
+
+                else
+                {
+
+
+                }
             }
         }
         else //있던 이미지를 파괴하고 대화창을 비활성화 시킨다(날짜가 지날때)
         {
             TalkPanel.SetActive(false);
+            flag = false; // 깃발 false
             Destroy(characterImage); characterImage = null;
+            talkIndex = 1; // 인덱스 1로 다시 바꿈
+            bell_btn.interactable = true;
+            door_btn.interactable = true;
             topbarChange.DayGain(); 
         }
 
@@ -188,11 +220,15 @@ public class TalkManager : MonoBehaviour
             if (count < txt.Length)
             {
                 Talktext.text += txt[count].ToString();
+                
                 count++;
             }
 
             yield return new WaitForSeconds(delay);
         }
+
+        coroutineIsRunningFlag = true;
+
     }
 
 

@@ -63,13 +63,7 @@ public class DragandDrop : MonoBehaviour , IBeginDragHandler, IEndDragHandler, I
         this.transform.position = DefaultPos;
     }
 
-    private void SetChildrenActive_glassIn(bool active)
-    {
-        foreach (Transform child in glass_In_Gather.transform)
-        {
-            child.gameObject.SetActive(active);
-        }
-    }
+   
     private void SetChildrenActive_glass(bool active)
     {
         foreach (Transform child in glassGather.transform)

@@ -1713,7 +1713,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -2017,7 +2017,9 @@ MonoBehaviour:
   barInside: {fileID: 958282894}
   flag: 0
   finishedMakingAlcoholFlag: 0
-  delay: 0.06
+  delay: 0.07
+  bell_btn: {fileID: 954496842}
+  door_btn: {fileID: 1907184461}
 --- !u!1 &1001803206
 GameObject:
   m_ObjectHideFlags: 0
@@ -2225,7 +2227,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -275, y: 215.31}
+  m_AnchoredPosition: {x: -275, y: 215.31006}
   m_SizeDelta: {x: 1120.2708, y: 283.0732}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1045475192
@@ -4089,6 +4091,8 @@ MonoBehaviour:
   flag: 0
   finishedMakingAlcoholFlag: 0
   delay: 0.2
+  bell_btn: {fileID: 0}
+  door_btn: {fileID: 0}
   talkmanager: {fileID: 984921631}
   topbarchange: {fileID: 1582550097}
   timeText: {fileID: 1927849165}
@@ -4476,7 +4480,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -4641,7 +4645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   makingAlcohol: {fileID: 1674414343}
-  timeSpeed: 1
+  timeSpeed: 0.3
   startTime: 18
 --- !u!1 &1933734954
 GameObject:
