@@ -18,15 +18,15 @@ public class TopbarChange : MonoBehaviour
     public Text reputationGainText_; //평판도 얻는 텍스트
 
 
-    public TopbarValue topbarValue;
+    
     // Start is called before the first frame update
 
     void Start()
     { 
         
-        goldText.text = topbarValue.gold.ToString();
-        reputationText.text = topbarValue.reputation.ToString();
-        dayText.text = topbarValue.days.ToString();
+        goldText.text = TopbarValue.instance.gold.ToString();
+        reputationText.text = TopbarValue.instance.reputation.ToString();
+        dayText.text = TopbarValue.instance.days.ToString();
         // 각각 topbar의 값을 일단 텍스트에 넣음
 
     }
@@ -35,9 +35,9 @@ public class TopbarChange : MonoBehaviour
     
 
     public void GoldGain(int gold) { //골드를 얻고 골드 텍스트를 바꿔주는 함수
-        topbarValue.gold += gold;
+        TopbarValue.instance.gold += gold;
         goldGainText_.text = "+" + gold + "g";
-        goldText.text = topbarValue.gold.ToString();
+        goldText.text = TopbarValue.instance.gold.ToString();
         GameObject gaintext = Instantiate(goldGainText, goldGainTextTransform);
         
 
@@ -45,18 +45,18 @@ public class TopbarChange : MonoBehaviour
     }
     public void ReputationGain(int reputation) // 평판도를 얻고 평판도텍스트를 바꿔주는 함수
     {
-        topbarValue.reputation += reputation;
+        TopbarValue.instance.reputation += reputation;
 
         reputationGainText_.text = "+" + reputation ;
-        reputationText.text = topbarValue.reputation.ToString();
+        reputationText.text = TopbarValue.instance.reputation.ToString();
         GameObject gaintext = Instantiate(reputationGainText, reputationGainTextTransform);
     }
 
     public void DayGain() // 날짜를 얻고 날짜텍스트를 바꿔주는 함수
     {
-        topbarValue.days += 1;
+        TopbarValue.instance.days += 1;
 
-        dayText.text = topbarValue.days.ToString();
+        dayText.text = TopbarValue.instance.days.ToString();
 
 
     }

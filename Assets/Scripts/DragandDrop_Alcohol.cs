@@ -118,7 +118,6 @@ public class DragandDrop_Alcohol : MonoBehaviour, IBeginDragHandler, IEndDragHan
 
         GlassName = publicImage.sprite.name;
 
-        Debug.Log(GlassName + alcoholName);
         
         fillGlass.ResourcesChange(GlassName, alcoholName);
 
