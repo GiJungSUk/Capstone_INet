@@ -130,7 +130,7 @@ public class TalkManager : MonoBehaviour
 
     public void Talking()
     {
-        if (makingAlcohol.timeFlag) // 시간이 지나 flag가 false가 되면 작업을 수행하지 않는다.
+        if (TopbarValue.instance.timeFlag) // 시간이 지나 flag가 false가 되면 작업을 수행하지 않는다.
         {
              // 대사 출력이 시작되어 트루로 바꿈
 

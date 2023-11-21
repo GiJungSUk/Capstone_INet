@@ -9,20 +9,36 @@ public class DragandDrop_Alcohol : MonoBehaviour, IBeginDragHandler, IEndDragHan
 {
     public FillGlass fillGlass;
 
+    public Image firstFloor;
+    public Image secondFloor;
+    public Image thirdFloor;
+
+    public Text top_Text;
+    public Text middle_Text;
+    public Text bottom_Text;
+
     public Image publicImage;
 
     public DragandDrop draganddrop;
+
     public Transform pouring_tr;
+    public Transform pouring_slime_tr;
+    private bool judge_tr = false;
 
     public float rotationSpeed = 200.0f;
 
     public GameObject[] dropArea; // 이미지가 놓여져야할 공간 범위(드래그해서 이미지를 감지할)
+    public GameObject slime;
+
+    public GameObject Panel;
 
     private bool isRotating;
     public static Vector2 DefaultPos;
     public static Quaternion DefaultRot;
 
     private RectTransform dropArea_;
+    private RectTransform dropArea_slime;
+    private Image slime_image;
 
     private string GlassName;
     public string alcoholName="red";
@@ -31,6 +47,8 @@ public class DragandDrop_Alcohol : MonoBehaviour, IBeginDragHandler, IEndDragHan
     void Start()
     {
         publicImage = publicImage.GetComponent<Image>();
+        dropArea_slime = slime.GetComponent<RectTransform>();
+        slime_image = slime.GetComponent<Image>();
     }
     private void Update()
     {
@@ -56,7 +74,7 @@ public class DragandDrop_Alcohol : MonoBehaviour, IBeginDragHandler, IEndDragHan
 
     void IDragHandler.OnDrag(PointerEventData eventData) //드래그 중
     {
-
+        
         Vector2 currentPos = eventData.position;
         this.transform.position = currentPos;
 
@@ -64,7 +82,7 @@ public class DragandDrop_Alcohol : MonoBehaviour, IBeginDragHandler, IEndDragHan
 
     void IEndDragHandler.OnEndDrag(PointerEventData eventData) // 드래그가 끝나고
     {
-
+        Panel.SetActive(false);
         Vector2 dropPosition = eventData.position;
 
         if (draganddrop.GetChildrenActive_glass()) {
@@ -72,12 +90,31 @@ public class DragandDrop_Alcohol : MonoBehaviour, IBeginDragHandler, IEndDragHan
              if (RectTransformUtility.RectangleContainsScreenPoint(dropArea_, dropPosition)) //특정위치에 드래그한 이미지가있으면 
                 {
             
-
+                    
                      StartCoroutine(RotateObject(gameObject.transform));
+                    
 
-            
 
-                }
+
+
+
+
+            }
+            else if(RectTransformUtility.RectangleContainsScreenPoint(dropArea_slime, dropPosition))
+            {
+                    judge_tr = true;
+                    StartCoroutine(RotateObject(gameObject.transform));
+                    firstFloor.sprite = Resources.Load<Sprite>("Nothing");
+                    secondFloor.sprite = Resources.Load<Sprite>("Nothing");
+                    thirdFloor.sprite = Resources.Load<Sprite>("Nothing");
+
+                    top_Text.text = "";
+                    middle_Text.text = "";
+                     bottom_Text.text = "";
+
+                    
+
+            }
             else
             {
                 this.transform.position = DefaultPos;
@@ -87,13 +124,29 @@ public class DragandDrop_Alcohol : MonoBehaviour, IBeginDragHandler, IEndDragHan
         {
             this.transform.position = DefaultPos;
         }
-        
 
+        
     }
 
     private IEnumerator RotateObject(Transform tr)
     {
+        if(judge_tr)
+        {
+            Sprite newSprite = Resources.Load<Sprite>("IceSlime_Open");
+            tr.position = pouring_slime_tr.position;
+            slime_image.sprite = newSprite;
+            Debug.Log(newSprite);
+            Debug.Log(slime_image.sprite);
+
+        }
+        else
+        {
+           
+        
         tr.position = pouring_tr.position;
+
+        }
+        
         StartRotation();
         int i = 0;
         // 시간에 따라 게임 오브젝트를 회전
@@ -116,10 +169,17 @@ public class DragandDrop_Alcohol : MonoBehaviour, IBeginDragHandler, IEndDragHan
 
         }
 
-        GlassName = publicImage.sprite.name;
-
-        
-        fillGlass.ResourcesChange(GlassName, alcoholName);
+        if (judge_tr)
+        {
+           
+            judge_tr = false;
+            slime_image.sprite = Resources.Load<Sprite>("iceSlime");
+        }
+        else
+        {
+            GlassName = publicImage.sprite.name;
+            fillGlass.ResourcesChange(GlassName, alcoholName);
+        }
 
         this.transform.position = DefaultPos;
         this.transform.rotation = DefaultRot;
@@ -131,6 +191,15 @@ public class DragandDrop_Alcohol : MonoBehaviour, IBeginDragHandler, IEndDragHan
         isRotating = true;
     }
 
-  
+  public void PanelSetActive()
+    {
+        if (Panel.activeSelf){
+            Panel.SetActive(false );
+        }
+        else
+        {
+            Panel.SetActive(true);
+        }
+    }
 
 }

@@ -18,13 +18,13 @@ public class MakingAlcohol : TalkManager
     public Image publicImage;
     public GameObject glassGather;
 
-    public bool timeFlag = false;// 시간을 쟤는 깃발
+    
 
     public void TimeOver() //설정해둔 시간 만큼 게임을 진행하였으면 깃발을 false로 바꿈 
     {
         if (curruntTime >= 24.0f)
         {
-            timeFlag = false;
+            TopbarValue.instance.timeFlag = false;
             curruntTime = 18.0f;
             timeText.text = "12:00";
             night_bg.SetActive(false);
@@ -34,7 +34,7 @@ public class MakingAlcohol : TalkManager
 
     public void TimeFlagTrue() // 게임을 시작함, 깃발을 true로 바꿈
     {
-        timeFlag = true;
+        TopbarValue.instance.timeFlag = true;
         curruntTime = 18.0f;
         timeText.text = "18:00";
     }

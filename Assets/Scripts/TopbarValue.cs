@@ -9,7 +9,7 @@ public class TopbarValue : MonoBehaviour
     public int days=1;  //날짜
     public int gold=0; // 골드
     public int reputation=0;  // 평판도
-
+    public bool timeFlag = false;// 시간을 쟤는 깃발
 
     // Start is called before the first frame update
     /* // 싱글톤 //

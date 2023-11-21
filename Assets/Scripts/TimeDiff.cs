@@ -15,12 +15,12 @@ public class TimeDiff : MonoBehaviour
 
     private void Start()
     {
-        makingAlcohol.curruntTime = startTime;
+       
     }
 
     private void Update()
     {
-        if (makingAlcohol.timeFlag)
+        if (TopbarValue.instance.timeFlag)
         {
 
             // ���� �ð��� ������Ʈ
