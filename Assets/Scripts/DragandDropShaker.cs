@@ -33,8 +33,13 @@ public class DragandDropShaker : MonoBehaviour, IBeginDragHandler, IEndDragHandl
 
     private RectTransform dropArea_;
 
+<<<<<<< HEAD
 
     public string colorName;
+=======
+   
+    public string colorName = "red";
+>>>>>>> f679201784e79e18c100b0cf1b5d0004dddeeda3
     public string thisName;
 
     void Start()
@@ -84,6 +89,7 @@ public class DragandDropShaker : MonoBehaviour, IBeginDragHandler, IEndDragHandl
 
                 StartCoroutine(RotateObject(gameObject.transform));
 
+<<<<<<< HEAD
                 if (thisName == "데낄라")
                 {
                     GameManager.instance.tequila = true;
@@ -96,6 +102,9 @@ public class DragandDropShaker : MonoBehaviour, IBeginDragHandler, IEndDragHandl
                 {
                     GameManager.instance.remonJuice = true;
                 }
+=======
+
+>>>>>>> f679201784e79e18c100b0cf1b5d0004dddeeda3
 
             }
             else
@@ -118,6 +127,7 @@ public class DragandDropShaker : MonoBehaviour, IBeginDragHandler, IEndDragHandl
         int i = 0;
         // 시간에 따라 게임 오브젝트를 회전
 
+<<<<<<< HEAD
         if (thisName != "레몬")
         {
             while (isRotating)
@@ -139,6 +149,27 @@ public class DragandDropShaker : MonoBehaviour, IBeginDragHandler, IEndDragHandl
             }
         }
 
+=======
+        while (isRotating)
+        {
+
+
+            if (i > 30)
+            {
+                isRotating = false;
+            }
+
+            ++i;
+            float rotationAmount = rotationSpeed * Time.deltaTime;
+            tr.Rotate(Vector3.forward, rotationAmount); // 2D 게임에서는 forward 축을 사용하여 회전
+            yield return new WaitForSeconds(0.05f);
+
+
+
+        }
+
+
+>>>>>>> f679201784e79e18c100b0cf1b5d0004dddeeda3
         if (firstFloor.sprite.name == "Nothing")
         {
               Sprite newSprite = Resources.Load<Sprite>(colorName + "_bottom");
@@ -160,7 +191,11 @@ public class DragandDropShaker : MonoBehaviour, IBeginDragHandler, IEndDragHandl
         }
         else { Debug.Log("꽉찼다!"); } 
                 
+<<<<<<< HEAD
         gameObject.SetActive(false);
+=======
+
+>>>>>>> f679201784e79e18c100b0cf1b5d0004dddeeda3
         this.transform.position = DefaultPos;
         this.transform.rotation = DefaultRot;
 

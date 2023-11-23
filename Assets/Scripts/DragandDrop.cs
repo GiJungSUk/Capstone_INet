@@ -50,6 +50,7 @@ public class DragandDrop : MonoBehaviour , IBeginDragHandler, IEndDragHandler, I
                
                 gameObject.SetActive(false); //자기 자신 없애고 
 
+<<<<<<< HEAD
                 
 
                 string glassNmae = imageComponent.sprite.name;
@@ -57,6 +58,11 @@ public class DragandDrop : MonoBehaviour , IBeginDragHandler, IEndDragHandler, I
                 glassImage.sprite = newSprite;
 
                 GameManager.instance.ResetIce();
+=======
+                string glassNmae = imageComponent.sprite.name;
+                Sprite newSprite = Resources.Load<Sprite>(glassNmae);
+                glassImage.sprite = newSprite;
+>>>>>>> f679201784e79e18c100b0cf1b5d0004dddeeda3
             // 글래스 잔을 탁자 위에 놓는다(탁자 위 글래스를 보여줌)
 
 

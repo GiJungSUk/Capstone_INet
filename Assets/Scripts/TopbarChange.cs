@@ -24,9 +24,15 @@ public class TopbarChange : MonoBehaviour
     void Start()
     { 
         
+<<<<<<< HEAD
         goldText.text = GameManager.instance.gold.ToString();
         reputationText.text = GameManager.instance.reputation.ToString();
         dayText.text = GameManager.instance.days.ToString();
+=======
+        goldText.text = TopbarValue.instance.gold.ToString();
+        reputationText.text = TopbarValue.instance.reputation.ToString();
+        dayText.text = TopbarValue.instance.days.ToString();
+>>>>>>> f679201784e79e18c100b0cf1b5d0004dddeeda3
         // 각각 topbar의 값을 일단 텍스트에 넣음
 
     }
@@ -35,9 +41,15 @@ public class TopbarChange : MonoBehaviour
     
 
     public void GoldGain(int gold) { //골드를 얻고 골드 텍스트를 바꿔주는 함수
+<<<<<<< HEAD
         GameManager.instance.gold += gold;
         goldGainText_.text = "+" + gold + "g";
         goldText.text = GameManager.instance.gold.ToString();
+=======
+        TopbarValue.instance.gold += gold;
+        goldGainText_.text = "+" + gold + "g";
+        goldText.text = TopbarValue.instance.gold.ToString();
+>>>>>>> f679201784e79e18c100b0cf1b5d0004dddeeda3
         GameObject gaintext = Instantiate(goldGainText, goldGainTextTransform);
         
 
@@ -45,18 +57,31 @@ public class TopbarChange : MonoBehaviour
     }
     public void ReputationGain(int reputation) // 평판도를 얻고 평판도텍스트를 바꿔주는 함수
     {
+<<<<<<< HEAD
         GameManager.instance.reputation += reputation;
 
         reputationGainText_.text = "+" + reputation ;
         reputationText.text = GameManager.instance.reputation.ToString();
+=======
+        TopbarValue.instance.reputation += reputation;
+
+        reputationGainText_.text = "+" + reputation ;
+        reputationText.text = TopbarValue.instance.reputation.ToString();
+>>>>>>> f679201784e79e18c100b0cf1b5d0004dddeeda3
         GameObject gaintext = Instantiate(reputationGainText, reputationGainTextTransform);
     }
 
     public void DayGain() // 날짜를 얻고 날짜텍스트를 바꿔주는 함수
     {
+<<<<<<< HEAD
         GameManager.instance.days += 1;
 
         dayText.text = GameManager.instance.days.ToString();
+=======
+        TopbarValue.instance.days += 1;
+
+        dayText.text = TopbarValue.instance.days.ToString();
+>>>>>>> f679201784e79e18c100b0cf1b5d0004dddeeda3
 
 
     }

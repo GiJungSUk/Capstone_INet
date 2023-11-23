@@ -102,12 +102,24 @@ public class DragandDrop_Alcohol : MonoBehaviour, IBeginDragHandler, IEndDragHan
             }
             else if(RectTransformUtility.RectangleContainsScreenPoint(dropArea_slime, dropPosition))
             {
+<<<<<<< HEAD
                     judge_tr = true; // 슬라임 위치인지 메인 잔 위치인지 판단해주는 
                     StartCoroutine(RotateObject(gameObject.transform));
                     
                     GameManager.instance.ResetValue(); //리셋시킴
 
                     ResetShaker();
+=======
+                    judge_tr = true;
+                    StartCoroutine(RotateObject(gameObject.transform));
+                    firstFloor.sprite = Resources.Load<Sprite>("Nothing");
+                    secondFloor.sprite = Resources.Load<Sprite>("Nothing");
+                    thirdFloor.sprite = Resources.Load<Sprite>("Nothing");
+
+                    top_Text.text = "";
+                    middle_Text.text = "";
+                     bottom_Text.text = "";
+>>>>>>> f679201784e79e18c100b0cf1b5d0004dddeeda3
 
                     
 
@@ -199,6 +211,7 @@ public class DragandDrop_Alcohol : MonoBehaviour, IBeginDragHandler, IEndDragHan
         }
     }
 
+<<<<<<< HEAD
     public void ResetShaker()
     {
         firstFloor.sprite = Resources.Load<Sprite>("Nothing");
@@ -209,4 +222,6 @@ public class DragandDrop_Alcohol : MonoBehaviour, IBeginDragHandler, IEndDragHan
         middle_Text.text = "";
         bottom_Text.text = "";
     }
+=======
+>>>>>>> f679201784e79e18c100b0cf1b5d0004dddeeda3
 }

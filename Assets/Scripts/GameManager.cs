@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
+<<<<<<< HEAD
     public int days = 1;  //날짜
     public int gold = 0; // 골드
     public int reputation = 0;  // 평판도
@@ -104,3 +105,22 @@ public class GameManager : MonoBehaviour
         ice = false;
     }
 }
+=======
+ 
+
+    // Start is called before the first frame update
+    void start()
+    {
+        
+
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+}
+>>>>>>> f679201784e79e18c100b0cf1b5d0004dddeeda3

@@ -20,7 +20,11 @@ public class TimeDiff : MonoBehaviour
 
     private void Update()
     {
+<<<<<<< HEAD
         if (GameManager.instance.timeFlag)
+=======
+        if (TopbarValue.instance.timeFlag)
+>>>>>>> f679201784e79e18c100b0cf1b5d0004dddeeda3
         {
 
             // ���� �ð��� ������Ʈ
